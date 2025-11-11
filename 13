@@ -1,0 +1,2610 @@
+local Library = loadstring(game:HttpGet("https://pastebin.com/raw/ex91GF09"))() 
+local Window = Library:CreateWindow({
+    Name = "FX SCRIPTS | SOUTH BRONX",
+    Themeable = {
+        Info = [[Discord Invite Code: fxscripts
+Script Is Made By FX]],
+        Credit = false,
+    },
+})
+
+local MovestpTab = Window:CreateTab({
+    Name = 'Moves/TPs'
+})
+
+local MovesSection = MovestpTab:CreateSection({
+    Name = '| Moves |',
+    Side = 'Right'
+})
+
+-- Stop Moving Button
+local Button = MovesSection:AddButton({ 
+    Name = "Stop Moving", 
+    Callback = function()
+        shared.stopMovement = true -- Stops movement
+    end,
+})
+
+-- Gun Shop 1
+local Button = MovesSection:AddButton({ 
+    Name = "Gun Shop 1",
+    Callback = function()
+        shared.stopMovement = false -- Reset stop flag when movement starts
+
+        local targetPositions = {
+            Vector3.new(220, 4, -165)
+        }
+
+        local stepDistance = 1
+        local stepTime = 0.041
+
+        local function moveToTarget(targetPosition)
+            local player = game.Players.LocalPlayer
+            local character = player.Character or player.CharacterAdded:Wait()
+            local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+            while not shared.stopMovement and (humanoidRootPart.Position - targetPosition).Magnitude > stepDistance do
+                local direction = (targetPosition - humanoidRootPart.Position).Unit
+                humanoidRootPart.CFrame = CFrame.new(humanoidRootPart.Position + direction * stepDistance)
+                wait(stepTime)
+            end
+        end
+
+        for _, targetPosition in ipairs(targetPositions) do
+            if shared.stopMovement then break end
+            moveToTarget(targetPosition)
+        end
+    end,
+})
+
+
+
+ --Gun Shop 2
+ local Button = MovesSection:AddButton({ 
+    Name = "Gun Shop 2",
+    Callback = function()
+        
+local targetPositions = {
+Vector3.new(-462, 4, 343)
+}
+
+local stepDistance = 1
+local stepTime = 0.041
+
+local function moveToTarget(targetPosition)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+local currentPosition = humanoidRootPart.Position
+
+if (currentPosition - targetPosition).Magnitude < stepDistance then
+humanoidRootPart.CFrame = CFrame.new(targetPosition)
+return true
+end
+
+local direction = (targetPosition - currentPosition).Unit
+local newPosition = currentPosition + direction * stepDistance
+
+humanoidRootPart.CFrame = CFrame.new(newPosition)
+return false
+end
+
+local VirtualInputManager = game:GetService("VirtualInputManager")
+local function pressKeyForDuration(key, duration)
+VirtualInputManager:SendKeyEvent(true, key, false, game)
+wait(duration)
+VirtualInputManager:SendKeyEvent(false, key, false, game)
+end
+
+local function moveToPositionAndPressKey(targetPosition, key, duration)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+while (humanoidRootPart.Position - targetPosition).Magnitude > 1 do
+local direction = (targetPosition - humanoidRootPart.Position).Unit
+humanoidRootPart.CFrame = CFrame.new(humanoidRootPart.Position + direction)
+wait(0.05)
+end
+
+pressKeyForDuration(key, duration)
+end
+
+for _, targetPosition in ipairs(targetPositions) do
+while true do
+local reached = moveToTarget(targetPosition)
+if reached then break end
+wait(stepTime)
+end
+end
+
+local player = game.Players.LocalPlayer
+local camera = workspace.CurrentCamera
+local runService = game:GetService("RunService")
+
+shared.isCameraLocked = not shared.isCameraLocked
+
+if shared.cameraLockConnection then
+    shared.cameraLockConnection:Disconnect()
+    shared.cameraLockConnection = nil
+end
+
+if shared.isCameraLocked then
+    local function lockCamera()
+        local character = player.Character or player.CharacterAdded:Wait()
+        local rootPart = character:WaitForChild("HumanoidRootPart")
+
+        local maxZoomDistance = 10
+        camera.CFrame = CFrame.new(rootPart.Position + Vector3.new(0, maxZoomDistance, 0)) * CFrame.Angles(-math.pi / 2, 0, 0)
+        camera.CameraType = Enum.CameraType.Scriptable
+    end
+
+    shared.cameraLockConnection = runService.RenderStepped:Connect(lockCamera)
+else
+    camera.CameraType = Enum.CameraType.Custom
+end
+
+moveToPositionAndPressKey(Vector3.new(-462, 4, 343), "W", 0.1)
+
+local player = game.Players.LocalPlayer
+local camera = workspace.CurrentCamera
+local runService = game:GetService("RunService")
+
+shared.isCameraLocked = not shared.isCameraLocked
+
+if shared.cameraLockConnection then
+    shared.cameraLockConnection:Disconnect()
+    shared.cameraLockConnection = nil
+end
+
+if shared.isCameraLocked then
+    local function lockCamera()
+        local character = player.Character or player.CharacterAdded:Wait()
+        local rootPart = character:WaitForChild("HumanoidRootPart")
+
+        local maxZoomDistance = 10
+        camera.CFrame = CFrame.new(rootPart.Position + Vector3.new(0, maxZoomDistance, 0)) * CFrame.Angles(-math.pi / 2, 0, 0)
+        camera.CameraType = Enum.CameraType.Scriptable
+    end
+
+    shared.cameraLockConnection = runService.RenderStepped:Connect(lockCamera)
+else
+    camera.CameraType = Enum.CameraType.Custom
+end
+    end,
+ })
+
+  --tier Shop
+
+local Button = MovesSection:AddButton({ 
+    Name = "Tier Shop",
+    Callback = function()
+        
+local targetPositions = {
+Vector3.new(1099, 3, 155)
+}
+
+local stepDistance = 1
+local stepTime = 0.041
+
+local function moveToTarget(targetPosition)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+local currentPosition = humanoidRootPart.Position
+
+if (currentPosition - targetPosition).Magnitude < stepDistance then
+humanoidRootPart.CFrame = CFrame.new(targetPosition)
+return true
+end
+
+local direction = (targetPosition - currentPosition).Unit
+local newPosition = currentPosition + direction * stepDistance
+
+humanoidRootPart.CFrame = CFrame.new(newPosition)
+return false
+end
+
+local VirtualInputManager = game:GetService("VirtualInputManager")
+local function pressKeyForDuration(key, duration)
+VirtualInputManager:SendKeyEvent(true, key, false, game)
+wait(duration)
+VirtualInputManager:SendKeyEvent(false, key, false, game)
+end
+
+local function moveToPositionAndPressKey(targetPosition, key, duration)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+while (humanoidRootPart.Position - targetPosition).Magnitude > 1 do
+local direction = (targetPosition - humanoidRootPart.Position).Unit
+humanoidRootPart.CFrame = CFrame.new(humanoidRootPart.Position + direction)
+wait(0.05)
+end
+
+pressKeyForDuration(key, duration)
+end
+
+for _, targetPosition in ipairs(targetPositions) do
+while true do
+local reached = moveToTarget(targetPosition)
+if reached then break end
+wait(stepTime)
+end
+end
+
+local player = game.Players.LocalPlayer
+local camera = workspace.CurrentCamera
+local runService = game:GetService("RunService")
+
+shared.isCameraLocked = not shared.isCameraLocked
+
+if shared.cameraLockConnection then
+    shared.cameraLockConnection:Disconnect()
+    shared.cameraLockConnection = nil
+end
+
+if shared.isCameraLocked then
+    local function lockCamera()
+        local character = player.Character or player.CharacterAdded:Wait()
+        local rootPart = character:WaitForChild("HumanoidRootPart")
+
+        local maxZoomDistance = 10
+        camera.CFrame = CFrame.new(rootPart.Position + Vector3.new(0, maxZoomDistance, 0)) * CFrame.Angles(-math.pi / 2, 0, 0)
+        camera.CameraType = Enum.CameraType.Scriptable
+    end
+
+    shared.cameraLockConnection = runService.RenderStepped:Connect(lockCamera)
+else
+    camera.CameraType = Enum.CameraType.Custom
+end
+
+moveToPositionAndPressKey(Vector3.new(1099, 3, 155), "W", 0.1)
+
+local player = game.Players.LocalPlayer
+local camera = workspace.CurrentCamera
+local runService = game:GetService("RunService")
+
+shared.isCameraLocked = not shared.isCameraLocked
+
+if shared.cameraLockConnection then
+    shared.cameraLockConnection:Disconnect()
+    shared.cameraLockConnection = nil
+end
+
+if shared.isCameraLocked then
+    local function lockCamera()
+        local character = player.Character or player.CharacterAdded:Wait()
+        local rootPart = character:WaitForChild("HumanoidRootPart")
+
+        local maxZoomDistance = 10
+        camera.CFrame = CFrame.new(rootPart.Position + Vector3.new(0, maxZoomDistance, 0)) * CFrame.Angles(-math.pi / 2, 0, 0)
+        camera.CameraType = Enum.CameraType.Scriptable
+    end
+
+    shared.cameraLockConnection = runService.RenderStepped:Connect(lockCamera)
+else
+    camera.CameraType = Enum.CameraType.Custom
+end
+    end,
+ })
+
+ --Blackmarket Delership
+ local Button = MovesSection:AddButton({ 
+    Name = "Blackmarket Delership",
+    Callback = function()
+        
+local targetPositions = {
+Vector3.new(657, 4, 267)
+}
+
+local stepDistance = 1
+local stepTime = 0.041
+
+local function moveToTarget(targetPosition)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+local currentPosition = humanoidRootPart.Position
+
+if (currentPosition - targetPosition).Magnitude < stepDistance then
+humanoidRootPart.CFrame = CFrame.new(targetPosition)
+return true
+end
+
+local direction = (targetPosition - currentPosition).Unit
+local newPosition = currentPosition + direction * stepDistance
+
+humanoidRootPart.CFrame = CFrame.new(newPosition)
+return false
+end
+
+local VirtualInputManager = game:GetService("VirtualInputManager")
+local function pressKeyForDuration(key, duration)
+VirtualInputManager:SendKeyEvent(true, key, false, game)
+wait(duration)
+VirtualInputManager:SendKeyEvent(false, key, false, game)
+end
+
+local function moveToPositionAndPressKey(targetPosition, key, duration)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+while (humanoidRootPart.Position - targetPosition).Magnitude > 1 do
+local direction = (targetPosition - humanoidRootPart.Position).Unit
+humanoidRootPart.CFrame = CFrame.new(humanoidRootPart.Position + direction)
+wait(0.05)
+end
+
+pressKeyForDuration(key, duration)
+end
+
+for _, targetPosition in ipairs(targetPositions) do
+while true do
+local reached = moveToTarget(targetPosition)
+if reached then break end
+wait(stepTime)
+end
+end
+
+local player = game.Players.LocalPlayer
+local camera = workspace.CurrentCamera
+local runService = game:GetService("RunService")
+
+shared.isCameraLocked = not shared.isCameraLocked
+
+if shared.cameraLockConnection then
+    shared.cameraLockConnection:Disconnect()
+    shared.cameraLockConnection = nil
+end
+
+if shared.isCameraLocked then
+    local function lockCamera()
+        local character = player.Character or player.CharacterAdded:Wait()
+        local rootPart = character:WaitForChild("HumanoidRootPart")
+
+        local maxZoomDistance = 10
+        camera.CFrame = CFrame.new(rootPart.Position + Vector3.new(0, maxZoomDistance, 0)) * CFrame.Angles(-math.pi / 2, 0, 0)
+        camera.CameraType = Enum.CameraType.Scriptable
+    end
+
+    shared.cameraLockConnection = runService.RenderStepped:Connect(lockCamera)
+else
+    camera.CameraType = Enum.CameraType.Custom
+end
+
+moveToPositionAndPressKey(Vector3.new(657, 4, 267), "W", 0.1)
+
+local player = game.Players.LocalPlayer
+local camera = workspace.CurrentCamera
+local runService = game:GetService("RunService")
+
+shared.isCameraLocked = not shared.isCameraLocked
+
+if shared.cameraLockConnection then
+    shared.cameraLockConnection:Disconnect()
+    shared.cameraLockConnection = nil
+end
+
+if shared.isCameraLocked then
+    local function lockCamera()
+        local character = player.Character or player.CharacterAdded:Wait()
+        local rootPart = character:WaitForChild("HumanoidRootPart")
+
+        local maxZoomDistance = 10
+        camera.CFrame = CFrame.new(rootPart.Position + Vector3.new(0, maxZoomDistance, 0)) * CFrame.Angles(-math.pi / 2, 0, 0)
+        camera.CameraType = Enum.CameraType.Scriptable
+    end
+
+    shared.cameraLockConnection = runService.RenderStepped:Connect(lockCamera)
+else
+    camera.CameraType = Enum.CameraType.Custom
+end
+    end,
+ })
+
+ --Gun Sells
+ local Button = MovesSection:AddButton({ 
+    Name = "Gun Sells",
+    Callback = function()
+        
+local targetPositions = {
+Vector3.new(117, 4, 65)
+}
+
+local stepDistance = 1
+local stepTime = 0.041
+
+local function moveToTarget(targetPosition)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+local currentPosition = humanoidRootPart.Position
+
+if (currentPosition - targetPosition).Magnitude < stepDistance then
+humanoidRootPart.CFrame = CFrame.new(targetPosition)
+return true
+end
+
+local direction = (targetPosition - currentPosition).Unit
+local newPosition = currentPosition + direction * stepDistance
+
+humanoidRootPart.CFrame = CFrame.new(newPosition)
+return false
+end
+
+local VirtualInputManager = game:GetService("VirtualInputManager")
+local function pressKeyForDuration(key, duration)
+VirtualInputManager:SendKeyEvent(true, key, false, game)
+wait(duration)
+VirtualInputManager:SendKeyEvent(false, key, false, game)
+end
+
+local function moveToPositionAndPressKey(targetPosition, key, duration)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+while (humanoidRootPart.Position - targetPosition).Magnitude > 1 do
+local direction = (targetPosition - humanoidRootPart.Position).Unit
+humanoidRootPart.CFrame = CFrame.new(humanoidRootPart.Position + direction)
+wait(0.05)
+end
+
+pressKeyForDuration(key, duration)
+end
+
+for _, targetPosition in ipairs(targetPositions) do
+while true do
+local reached = moveToTarget(targetPosition)
+if reached then break end
+wait(stepTime)
+end
+end
+
+local player = game.Players.LocalPlayer
+local camera = workspace.CurrentCamera
+local runService = game:GetService("RunService")
+
+shared.isCameraLocked = not shared.isCameraLocked
+
+if shared.cameraLockConnection then
+    shared.cameraLockConnection:Disconnect()
+    shared.cameraLockConnection = nil
+end
+
+if shared.isCameraLocked then
+    local function lockCamera()
+        local character = player.Character or player.CharacterAdded:Wait()
+        local rootPart = character:WaitForChild("HumanoidRootPart")
+
+        local maxZoomDistance = 10
+        camera.CFrame = CFrame.new(rootPart.Position + Vector3.new(0, maxZoomDistance, 0)) * CFrame.Angles(-math.pi / 2, 0, 0)
+        camera.CameraType = Enum.CameraType.Scriptable
+    end
+
+    shared.cameraLockConnection = runService.RenderStepped:Connect(lockCamera)
+else
+    camera.CameraType = Enum.CameraType.Custom
+end
+
+moveToPositionAndPressKey(Vector3.new(117, 4, 65), "W", 0.1)
+
+local player = game.Players.LocalPlayer
+local camera = workspace.CurrentCamera
+local runService = game:GetService("RunService")
+
+shared.isCameraLocked = not shared.isCameraLocked
+
+if shared.cameraLockConnection then
+    shared.cameraLockConnection:Disconnect()
+    shared.cameraLockConnection = nil
+end
+
+if shared.isCameraLocked then
+    local function lockCamera()
+        local character = player.Character or player.CharacterAdded:Wait()
+        local rootPart = character:WaitForChild("HumanoidRootPart")
+
+        local maxZoomDistance = 10
+        camera.CFrame = CFrame.new(rootPart.Position + Vector3.new(0, maxZoomDistance, 0)) * CFrame.Angles(-math.pi / 2, 0, 0)
+        camera.CameraType = Enum.CameraType.Scriptable
+    end
+
+    shared.cameraLockConnection = runService.RenderStepped:Connect(lockCamera)
+else
+    camera.CameraType = Enum.CameraType.Custom
+end
+    end,
+ })
+
+  --Jim's Market
+  local Button = MovesSection:AddButton({ 
+    Name = "Jim's Market",
+    Callback = function()
+        
+local targetPositions = {
+Vector3.new(-37, 4, -93)
+}
+
+local stepDistance = 1
+local stepTime = 0.041
+
+local function moveToTarget(targetPosition)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+local currentPosition = humanoidRootPart.Position
+
+if (currentPosition - targetPosition).Magnitude < stepDistance then
+humanoidRootPart.CFrame = CFrame.new(targetPosition)
+return true
+end
+
+local direction = (targetPosition - currentPosition).Unit
+local newPosition = currentPosition + direction * stepDistance
+
+humanoidRootPart.CFrame = CFrame.new(newPosition)
+return false
+end
+
+local VirtualInputManager = game:GetService("VirtualInputManager")
+local function pressKeyForDuration(key, duration)
+VirtualInputManager:SendKeyEvent(true, key, false, game)
+wait(duration)
+VirtualInputManager:SendKeyEvent(false, key, false, game)
+end
+
+local function moveToPositionAndPressKey(targetPosition, key, duration)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+while (humanoidRootPart.Position - targetPosition).Magnitude > 1 do
+local direction = (targetPosition - humanoidRootPart.Position).Unit
+humanoidRootPart.CFrame = CFrame.new(humanoidRootPart.Position + direction)
+wait(0.05)
+end
+
+pressKeyForDuration(key, duration)
+end
+
+for _, targetPosition in ipairs(targetPositions) do
+while true do
+local reached = moveToTarget(targetPosition)
+if reached then break end
+wait(stepTime)
+end
+end
+
+local player = game.Players.LocalPlayer
+local camera = workspace.CurrentCamera
+local runService = game:GetService("RunService")
+
+shared.isCameraLocked = not shared.isCameraLocked
+
+if shared.cameraLockConnection then
+    shared.cameraLockConnection:Disconnect()
+    shared.cameraLockConnection = nil
+end
+
+if shared.isCameraLocked then
+    local function lockCamera()
+        local character = player.Character or player.CharacterAdded:Wait()
+        local rootPart = character:WaitForChild("HumanoidRootPart")
+
+        local maxZoomDistance = 10
+        camera.CFrame = CFrame.new(rootPart.Position + Vector3.new(0, maxZoomDistance, 0)) * CFrame.Angles(-math.pi / 2, 0, 0)
+        camera.CameraType = Enum.CameraType.Scriptable
+    end
+
+    shared.cameraLockConnection = runService.RenderStepped:Connect(lockCamera)
+else
+    camera.CameraType = Enum.CameraType.Custom
+end
+
+moveToPositionAndPressKey(Vector3.new(-37, 4, -93), "W", 0.1)
+
+local player = game.Players.LocalPlayer
+local camera = workspace.CurrentCamera
+local runService = game:GetService("RunService")
+
+shared.isCameraLocked = not shared.isCameraLocked
+
+if shared.cameraLockConnection then
+    shared.cameraLockConnection:Disconnect()
+    shared.cameraLockConnection = nil
+end
+
+if shared.isCameraLocked then
+    local function lockCamera()
+        local character = player.Character or player.CharacterAdded:Wait()
+        local rootPart = character:WaitForChild("HumanoidRootPart")
+
+        local maxZoomDistance = 10
+        camera.CFrame = CFrame.new(rootPart.Position + Vector3.new(0, maxZoomDistance, 0)) * CFrame.Angles(-math.pi / 2, 0, 0)
+        camera.CameraType = Enum.CameraType.Scriptable
+    end
+
+    shared.cameraLockConnection = runService.RenderStepped:Connect(lockCamera)
+else
+    camera.CameraType = Enum.CameraType.Custom
+end
+    end,
+ })
+
+  --Delership Gas
+  local Button = MovesSection:AddButton({ 
+    Name = "Delership Gas",
+    Callback = function()
+        
+local targetPositions = {
+Vector3.new(517, 4, 407)
+}
+
+local stepDistance = 1
+local stepTime = 0.041
+
+local function moveToTarget(targetPosition)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+local currentPosition = humanoidRootPart.Position
+
+if (currentPosition - targetPosition).Magnitude < stepDistance then
+humanoidRootPart.CFrame = CFrame.new(targetPosition)
+return true
+end
+
+local direction = (targetPosition - currentPosition).Unit
+local newPosition = currentPosition + direction * stepDistance
+
+humanoidRootPart.CFrame = CFrame.new(newPosition)
+return false
+end
+
+local VirtualInputManager = game:GetService("VirtualInputManager")
+local function pressKeyForDuration(key, duration)
+VirtualInputManager:SendKeyEvent(true, key, false, game)
+wait(duration)
+VirtualInputManager:SendKeyEvent(false, key, false, game)
+end
+
+local function moveToPositionAndPressKey(targetPosition, key, duration)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+while (humanoidRootPart.Position - targetPosition).Magnitude > 1 do
+local direction = (targetPosition - humanoidRootPart.Position).Unit
+humanoidRootPart.CFrame = CFrame.new(humanoidRootPart.Position + direction)
+wait(0.05)
+end
+
+pressKeyForDuration(key, duration)
+end
+
+for _, targetPosition in ipairs(targetPositions) do
+while true do
+local reached = moveToTarget(targetPosition)
+if reached then break end
+wait(stepTime)
+end
+end
+
+local player = game.Players.LocalPlayer
+local camera = workspace.CurrentCamera
+local runService = game:GetService("RunService")
+
+shared.isCameraLocked = not shared.isCameraLocked
+
+if shared.cameraLockConnection then
+    shared.cameraLockConnection:Disconnect()
+    shared.cameraLockConnection = nil
+end
+
+if shared.isCameraLocked then
+    local function lockCamera()
+        local character = player.Character or player.CharacterAdded:Wait()
+        local rootPart = character:WaitForChild("HumanoidRootPart")
+
+        local maxZoomDistance = 10
+        camera.CFrame = CFrame.new(rootPart.Position + Vector3.new(0, maxZoomDistance, 0)) * CFrame.Angles(-math.pi / 2, 0, 0)
+        camera.CameraType = Enum.CameraType.Scriptable
+    end
+
+    shared.cameraLockConnection = runService.RenderStepped:Connect(lockCamera)
+else
+    camera.CameraType = Enum.CameraType.Custom
+end
+
+moveToPositionAndPressKey(Vector3.new(517, 4, 407), "W", 0.1)
+
+local player = game.Players.LocalPlayer
+local camera = workspace.CurrentCamera
+local runService = game:GetService("RunService")
+
+shared.isCameraLocked = not shared.isCameraLocked
+
+if shared.cameraLockConnection then
+    shared.cameraLockConnection:Disconnect()
+    shared.cameraLockConnection = nil
+end
+
+if shared.isCameraLocked then
+    local function lockCamera()
+        local character = player.Character or player.CharacterAdded:Wait()
+        local rootPart = character:WaitForChild("HumanoidRootPart")
+
+        local maxZoomDistance = 10
+        camera.CFrame = CFrame.new(rootPart.Position + Vector3.new(0, maxZoomDistance, 0)) * CFrame.Angles(-math.pi / 2, 0, 0)
+        camera.CameraType = Enum.CameraType.Scriptable
+    end
+
+    shared.cameraLockConnection = runService.RenderStepped:Connect(lockCamera)
+else
+    camera.CameraType = Enum.CameraType.Custom
+end
+    end,
+ })
+
+--Jim's Market
+local Button = MovesSection:AddButton({ 
+    Name = "Unc's Deli",
+    Callback = function()
+        
+local targetPositions = {
+Vector3.new(-372, 4, -358)
+}
+
+local stepDistance = 1
+local stepTime = 0.041
+
+local function moveToTarget(targetPosition)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+local currentPosition = humanoidRootPart.Position
+
+if (currentPosition - targetPosition).Magnitude < stepDistance then
+humanoidRootPart.CFrame = CFrame.new(targetPosition)
+return true
+end
+
+local direction = (targetPosition - currentPosition).Unit
+local newPosition = currentPosition + direction * stepDistance
+
+humanoidRootPart.CFrame = CFrame.new(newPosition)
+return false
+end
+
+local VirtualInputManager = game:GetService("VirtualInputManager")
+local function pressKeyForDuration(key, duration)
+VirtualInputManager:SendKeyEvent(true, key, false, game)
+wait(duration)
+VirtualInputManager:SendKeyEvent(false, key, false, game)
+end
+
+local function moveToPositionAndPressKey(targetPosition, key, duration)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+while (humanoidRootPart.Position - targetPosition).Magnitude > 1 do
+local direction = (targetPosition - humanoidRootPart.Position).Unit
+humanoidRootPart.CFrame = CFrame.new(humanoidRootPart.Position + direction)
+wait(0.05)
+end
+
+pressKeyForDuration(key, duration)
+end
+
+for _, targetPosition in ipairs(targetPositions) do
+while true do
+local reached = moveToTarget(targetPosition)
+if reached then break end
+wait(stepTime)
+end
+end
+
+local player = game.Players.LocalPlayer
+local camera = workspace.CurrentCamera
+local runService = game:GetService("RunService")
+
+shared.isCameraLocked = not shared.isCameraLocked
+
+if shared.cameraLockConnection then
+    shared.cameraLockConnection:Disconnect()
+    shared.cameraLockConnection = nil
+end
+
+if shared.isCameraLocked then
+    local function lockCamera()
+        local character = player.Character or player.CharacterAdded:Wait()
+        local rootPart = character:WaitForChild("HumanoidRootPart")
+
+        local maxZoomDistance = 10
+        camera.CFrame = CFrame.new(rootPart.Position + Vector3.new(0, maxZoomDistance, 0)) * CFrame.Angles(-math.pi / 2, 0, 0)
+        camera.CameraType = Enum.CameraType.Scriptable
+    end
+
+    shared.cameraLockConnection = runService.RenderStepped:Connect(lockCamera)
+else
+    camera.CameraType = Enum.CameraType.Custom
+end
+
+moveToPositionAndPressKey(Vector3.new(-372, 4, -358), "W", 0.1)
+
+local player = game.Players.LocalPlayer
+local camera = workspace.CurrentCamera
+local runService = game:GetService("RunService")
+
+shared.isCameraLocked = not shared.isCameraLocked
+
+if shared.cameraLockConnection then
+    shared.cameraLockConnection:Disconnect()
+    shared.cameraLockConnection = nil
+end
+
+if shared.isCameraLocked then
+    local function lockCamera()
+        local character = player.Character or player.CharacterAdded:Wait()
+        local rootPart = character:WaitForChild("HumanoidRootPart")
+
+        local maxZoomDistance = 10
+        camera.CFrame = CFrame.new(rootPart.Position + Vector3.new(0, maxZoomDistance, 0)) * CFrame.Angles(-math.pi / 2, 0, 0)
+        camera.CameraType = Enum.CameraType.Scriptable
+    end
+
+    shared.cameraLockConnection = runService.RenderStepped:Connect(lockCamera)
+else
+    camera.CameraType = Enum.CameraType.Custom
+end
+    end,
+ })
+
+ --The Deli
+ local Button = MovesSection:AddButton({ 
+    Name = "The Deli",
+    Callback = function()
+        
+local targetPositions = {
+Vector3.new(-654, 4, 167)
+}
+
+local stepDistance = 1
+local stepTime = 0.041
+
+local function moveToTarget(targetPosition)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+local currentPosition = humanoidRootPart.Position
+
+if (currentPosition - targetPosition).Magnitude < stepDistance then
+humanoidRootPart.CFrame = CFrame.new(targetPosition)
+return true
+end
+
+local direction = (targetPosition - currentPosition).Unit
+local newPosition = currentPosition + direction * stepDistance
+
+humanoidRootPart.CFrame = CFrame.new(newPosition)
+return false
+end
+
+local VirtualInputManager = game:GetService("VirtualInputManager")
+local function pressKeyForDuration(key, duration)
+VirtualInputManager:SendKeyEvent(true, key, false, game)
+wait(duration)
+VirtualInputManager:SendKeyEvent(false, key, false, game)
+end
+
+local function moveToPositionAndPressKey(targetPosition, key, duration)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+while (humanoidRootPart.Position - targetPosition).Magnitude > 1 do
+local direction = (targetPosition - humanoidRootPart.Position).Unit
+humanoidRootPart.CFrame = CFrame.new(humanoidRootPart.Position + direction)
+wait(0.05)
+end
+
+pressKeyForDuration(key, duration)
+end
+
+for _, targetPosition in ipairs(targetPositions) do
+while true do
+local reached = moveToTarget(targetPosition)
+if reached then break end
+wait(stepTime)
+end
+end
+
+local player = game.Players.LocalPlayer
+local camera = workspace.CurrentCamera
+local runService = game:GetService("RunService")
+
+shared.isCameraLocked = not shared.isCameraLocked
+
+if shared.cameraLockConnection then
+    shared.cameraLockConnection:Disconnect()
+    shared.cameraLockConnection = nil
+end
+
+if shared.isCameraLocked then
+    local function lockCamera()
+        local character = player.Character or player.CharacterAdded:Wait()
+        local rootPart = character:WaitForChild("HumanoidRootPart")
+
+        local maxZoomDistance = 10
+        camera.CFrame = CFrame.new(rootPart.Position + Vector3.new(0, maxZoomDistance, 0)) * CFrame.Angles(-math.pi / 2, 0, 0)
+        camera.CameraType = Enum.CameraType.Scriptable
+    end
+
+    shared.cameraLockConnection = runService.RenderStepped:Connect(lockCamera)
+else
+    camera.CameraType = Enum.CameraType.Custom
+end
+
+moveToPositionAndPressKey(Vector3.new(-654, 4, 167), "W", 0.1)
+
+local player = game.Players.LocalPlayer
+local camera = workspace.CurrentCamera
+local runService = game:GetService("RunService")
+
+shared.isCameraLocked = not shared.isCameraLocked
+
+if shared.cameraLockConnection then
+    shared.cameraLockConnection:Disconnect()
+    shared.cameraLockConnection = nil
+end
+
+if shared.isCameraLocked then
+    local function lockCamera()
+        local character = player.Character or player.CharacterAdded:Wait()
+        local rootPart = character:WaitForChild("HumanoidRootPart")
+
+        local maxZoomDistance = 10
+        camera.CFrame = CFrame.new(rootPart.Position + Vector3.new(0, maxZoomDistance, 0)) * CFrame.Angles(-math.pi / 2, 0, 0)
+        camera.CameraType = Enum.CameraType.Scriptable
+    end
+
+    shared.cameraLockConnection = runService.RenderStepped:Connect(lockCamera)
+else
+    camera.CameraType = Enum.CameraType.Custom
+end
+    end,
+ })
+
+--boxes
+local Button = MovesSection:AddButton({ 
+    Name = "Box Job",
+    Callback = function()
+        
+local targetPositions = {
+Vector3.new(-539, 4, -83)
+}
+
+local stepDistance = 1
+local stepTime = 0.041
+
+local function moveToTarget(targetPosition)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+local currentPosition = humanoidRootPart.Position
+
+if (currentPosition - targetPosition).Magnitude < stepDistance then
+humanoidRootPart.CFrame = CFrame.new(targetPosition)
+return true
+end
+
+local direction = (targetPosition - currentPosition).Unit
+local newPosition = currentPosition + direction * stepDistance
+
+humanoidRootPart.CFrame = CFrame.new(newPosition)
+return false
+end
+
+local VirtualInputManager = game:GetService("VirtualInputManager")
+local function pressKeyForDuration(key, duration)
+VirtualInputManager:SendKeyEvent(true, key, false, game)
+wait(duration)
+VirtualInputManager:SendKeyEvent(false, key, false, game)
+end
+
+local function moveToPositionAndPressKey(targetPosition, key, duration)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+while (humanoidRootPart.Position - targetPosition).Magnitude > 1 do
+local direction = (targetPosition - humanoidRootPart.Position).Unit
+humanoidRootPart.CFrame = CFrame.new(humanoidRootPart.Position + direction)
+wait(0.05)
+end
+
+pressKeyForDuration(key, duration)
+end
+
+for _, targetPosition in ipairs(targetPositions) do
+while true do
+local reached = moveToTarget(targetPosition)
+if reached then break end
+wait(stepTime)
+end
+end
+
+local player = game.Players.LocalPlayer
+local camera = workspace.CurrentCamera
+local runService = game:GetService("RunService")
+
+shared.isCameraLocked = not shared.isCameraLocked
+
+if shared.cameraLockConnection then
+    shared.cameraLockConnection:Disconnect()
+    shared.cameraLockConnection = nil
+end
+
+if shared.isCameraLocked then
+    local function lockCamera()
+        local character = player.Character or player.CharacterAdded:Wait()
+        local rootPart = character:WaitForChild("HumanoidRootPart")
+
+        local maxZoomDistance = 10
+        camera.CFrame = CFrame.new(rootPart.Position + Vector3.new(0, maxZoomDistance, 0)) * CFrame.Angles(-math.pi / 2, 0, 0)
+        camera.CameraType = Enum.CameraType.Scriptable
+    end
+
+    shared.cameraLockConnection = runService.RenderStepped:Connect(lockCamera)
+else
+    camera.CameraType = Enum.CameraType.Custom
+end
+
+moveToPositionAndPressKey(Vector3.new(-539, 4, -83), "W", 0.1)
+
+local player = game.Players.LocalPlayer
+local camera = workspace.CurrentCamera
+local runService = game:GetService("RunService")
+
+shared.isCameraLocked = not shared.isCameraLocked
+
+if shared.cameraLockConnection then
+    shared.cameraLockConnection:Disconnect()
+    shared.cameraLockConnection = nil
+end
+
+if shared.isCameraLocked then
+    local function lockCamera()
+        local character = player.Character or player.CharacterAdded:Wait()
+        local rootPart = character:WaitForChild("HumanoidRootPart")
+
+        local maxZoomDistance = 10
+        camera.CFrame = CFrame.new(rootPart.Position + Vector3.new(0, maxZoomDistance, 0)) * CFrame.Angles(-math.pi / 2, 0, 0)
+        camera.CameraType = Enum.CameraType.Scriptable
+    end
+
+    shared.cameraLockConnection = runService.RenderStepped:Connect(lockCamera)
+else
+    camera.CameraType = Enum.CameraType.Custom
+end
+    end,
+ })
+
+ --trash job
+ local Button = MovesSection:AddButton({ 
+    Name = "Trash Job",
+    Callback = function()
+        
+local targetPositions = {
+Vector3.new(716, 4, 147)
+}
+
+local stepDistance = 1
+local stepTime = 0.041
+
+local function moveToTarget(targetPosition)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+local currentPosition = humanoidRootPart.Position
+
+if (currentPosition - targetPosition).Magnitude < stepDistance then
+humanoidRootPart.CFrame = CFrame.new(targetPosition)
+return true
+end
+
+local direction = (targetPosition - currentPosition).Unit
+local newPosition = currentPosition + direction * stepDistance
+
+humanoidRootPart.CFrame = CFrame.new(newPosition)
+return false
+end
+
+local VirtualInputManager = game:GetService("VirtualInputManager")
+local function pressKeyForDuration(key, duration)
+VirtualInputManager:SendKeyEvent(true, key, false, game)
+wait(duration)
+VirtualInputManager:SendKeyEvent(false, key, false, game)
+end
+
+local function moveToPositionAndPressKey(targetPosition, key, duration)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+while (humanoidRootPart.Position - targetPosition).Magnitude > 1 do
+local direction = (targetPosition - humanoidRootPart.Position).Unit
+humanoidRootPart.CFrame = CFrame.new(humanoidRootPart.Position + direction)
+wait(0.05)
+end
+
+pressKeyForDuration(key, duration)
+end
+
+for _, targetPosition in ipairs(targetPositions) do
+while true do
+local reached = moveToTarget(targetPosition)
+if reached then break end
+wait(stepTime)
+end
+end
+
+local player = game.Players.LocalPlayer
+local camera = workspace.CurrentCamera
+local runService = game:GetService("RunService")
+
+shared.isCameraLocked = not shared.isCameraLocked
+
+if shared.cameraLockConnection then
+    shared.cameraLockConnection:Disconnect()
+    shared.cameraLockConnection = nil
+end
+
+if shared.isCameraLocked then
+    local function lockCamera()
+        local character = player.Character or player.CharacterAdded:Wait()
+        local rootPart = character:WaitForChild("HumanoidRootPart")
+
+        local maxZoomDistance = 10
+        camera.CFrame = CFrame.new(rootPart.Position + Vector3.new(0, maxZoomDistance, 0)) * CFrame.Angles(-math.pi / 2, 0, 0)
+        camera.CameraType = Enum.CameraType.Scriptable
+    end
+
+    shared.cameraLockConnection = runService.RenderStepped:Connect(lockCamera)
+else
+    camera.CameraType = Enum.CameraType.Custom
+end
+
+moveToPositionAndPressKey(Vector3.new(716, 4, 147), "W", 0.1)
+
+local player = game.Players.LocalPlayer
+local camera = workspace.CurrentCamera
+local runService = game:GetService("RunService")
+
+shared.isCameraLocked = not shared.isCameraLocked
+
+if shared.cameraLockConnection then
+    shared.cameraLockConnection:Disconnect()
+    shared.cameraLockConnection = nil
+end
+
+if shared.isCameraLocked then
+    local function lockCamera()
+        local character = player.Character or player.CharacterAdded:Wait()
+        local rootPart = character:WaitForChild("HumanoidRootPart")
+
+        local maxZoomDistance = 10
+        camera.CFrame = CFrame.new(rootPart.Position + Vector3.new(0, maxZoomDistance, 0)) * CFrame.Angles(-math.pi / 2, 0, 0)
+        camera.CameraType = Enum.CameraType.Scriptable
+    end
+
+    shared.cameraLockConnection = runService.RenderStepped:Connect(lockCamera)
+else
+    camera.CameraType = Enum.CameraType.Custom
+end
+    end,
+ })
+
+        --bank
+local Button = MovesSection:AddButton({ 
+    Name = "Bank",
+    Callback = function()
+        
+local targetPositions = {
+Vector3.new(-43, 4, -351)
+}
+
+local stepDistance = 1
+local stepTime = 0.041
+
+local function moveToTarget(targetPosition)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+local currentPosition = humanoidRootPart.Position
+
+if (currentPosition - targetPosition).Magnitude < stepDistance then
+humanoidRootPart.CFrame = CFrame.new(targetPosition)
+return true
+end
+
+local direction = (targetPosition - currentPosition).Unit
+local newPosition = currentPosition + direction * stepDistance
+
+humanoidRootPart.CFrame = CFrame.new(newPosition)
+return false
+end
+
+local VirtualInputManager = game:GetService("VirtualInputManager")
+local function pressKeyForDuration(key, duration)
+VirtualInputManager:SendKeyEvent(true, key, false, game)
+wait(duration)
+VirtualInputManager:SendKeyEvent(false, key, false, game)
+end
+
+local function moveToPositionAndPressKey(targetPosition, key, duration)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+while (humanoidRootPart.Position - targetPosition).Magnitude > 1 do
+local direction = (targetPosition - humanoidRootPart.Position).Unit
+humanoidRootPart.CFrame = CFrame.new(humanoidRootPart.Position + direction)
+wait(0.05)
+end
+
+pressKeyForDuration(key, duration)
+end
+
+for _, targetPosition in ipairs(targetPositions) do
+while true do
+local reached = moveToTarget(targetPosition)
+if reached then break end
+wait(stepTime)
+end
+end
+
+local player = game.Players.LocalPlayer
+local camera = workspace.CurrentCamera
+local runService = game:GetService("RunService")
+
+shared.isCameraLocked = not shared.isCameraLocked
+
+if shared.cameraLockConnection then
+    shared.cameraLockConnection:Disconnect()
+    shared.cameraLockConnection = nil
+end
+
+if shared.isCameraLocked then
+    local function lockCamera()
+        local character = player.Character or player.CharacterAdded:Wait()
+        local rootPart = character:WaitForChild("HumanoidRootPart")
+
+        local maxZoomDistance = 10
+        camera.CFrame = CFrame.new(rootPart.Position + Vector3.new(0, maxZoomDistance, 0)) * CFrame.Angles(-math.pi / 2, 0, 0)
+        camera.CameraType = Enum.CameraType.Scriptable
+    end
+
+    shared.cameraLockConnection = runService.RenderStepped:Connect(lockCamera)
+else
+    camera.CameraType = Enum.CameraType.Custom
+end
+
+moveToPositionAndPressKey(Vector3.new(-43, 4, -351), "W", 0.1)
+
+local player = game.Players.LocalPlayer
+local camera = workspace.CurrentCamera
+local runService = game:GetService("RunService")
+
+shared.isCameraLocked = not shared.isCameraLocked
+
+if shared.cameraLockConnection then
+    shared.cameraLockConnection:Disconnect()
+    shared.cameraLockConnection = nil
+end
+
+if shared.isCameraLocked then
+    local function lockCamera()
+        local character = player.Character or player.CharacterAdded:Wait()
+        local rootPart = character:WaitForChild("HumanoidRootPart")
+
+        local maxZoomDistance = 10
+        camera.CFrame = CFrame.new(rootPart.Position + Vector3.new(0, maxZoomDistance, 0)) * CFrame.Angles(-math.pi / 2, 0, 0)
+        camera.CameraType = Enum.CameraType.Scriptable
+    end
+
+    shared.cameraLockConnection = runService.RenderStepped:Connect(lockCamera)
+else
+    camera.CameraType = Enum.CameraType.Custom
+end
+    end,
+ })
+
+ --Mexican Deli
+ local Button = MovesSection:AddButton({ 
+    Name = "Mexican Deli",
+    Callback = function()
+local targetPositions = {
+Vector3.new(-802, 4, -168)
+}
+
+local stepDistance = 1
+local stepTime = 0.041
+
+local function moveToTarget(targetPosition)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+local currentPosition = humanoidRootPart.Position
+
+if (currentPosition - targetPosition).Magnitude < stepDistance then
+humanoidRootPart.CFrame = CFrame.new(targetPosition)
+return true
+end
+
+local direction = (targetPosition - currentPosition).Unit
+local newPosition = currentPosition + direction * stepDistance
+
+humanoidRootPart.CFrame = CFrame.new(newPosition)
+return false
+end
+
+local VirtualInputManager = game:GetService("VirtualInputManager")
+local function pressKeyForDuration(key, duration)
+VirtualInputManager:SendKeyEvent(true, key, false, game)
+wait(duration)
+VirtualInputManager:SendKeyEvent(false, key, false, game)
+end
+
+local function moveToPositionAndPressKey(targetPosition, key, duration)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+while (humanoidRootPart.Position - targetPosition).Magnitude > 1 do
+local direction = (targetPosition - humanoidRootPart.Position).Unit
+humanoidRootPart.CFrame = CFrame.new(humanoidRootPart.Position + direction)
+wait(0.05)
+end
+
+pressKeyForDuration(key, duration)
+end
+
+for _, targetPosition in ipairs(targetPositions) do
+while true do
+local reached = moveToTarget(targetPosition)
+if reached then break end
+wait(stepTime)
+end
+end
+
+local player = game.Players.LocalPlayer
+local camera = workspace.CurrentCamera
+local runService = game:GetService("RunService")
+
+shared.isCameraLocked = not shared.isCameraLocked
+
+if shared.cameraLockConnection then
+    shared.cameraLockConnection:Disconnect()
+    shared.cameraLockConnection = nil
+end
+
+if shared.isCameraLocked then
+    local function lockCamera()
+        local character = player.Character or player.CharacterAdded:Wait()
+        local rootPart = character:WaitForChild("HumanoidRootPart")
+
+        local maxZoomDistance = 10
+        camera.CFrame = CFrame.new(rootPart.Position + Vector3.new(0, maxZoomDistance, 0)) * CFrame.Angles(-math.pi / 2, 0, 0)
+        camera.CameraType = Enum.CameraType.Scriptable
+    end
+
+    shared.cameraLockConnection = runService.RenderStepped:Connect(lockCamera)
+else
+    camera.CameraType = Enum.CameraType.Custom
+end
+
+moveToPositionAndPressKey(Vector3.new(-802, 4, -168), "W", 0.1)
+
+local player = game.Players.LocalPlayer
+local camera = workspace.CurrentCamera
+local runService = game:GetService("RunService")
+
+shared.isCameraLocked = not shared.isCameraLocked
+
+if shared.cameraLockConnection then
+    shared.cameraLockConnection:Disconnect()
+    shared.cameraLockConnection = nil
+end
+
+if shared.isCameraLocked then
+    local function lockCamera()
+        local character = player.Character or player.CharacterAdded:Wait()
+        local rootPart = character:WaitForChild("HumanoidRootPart")
+
+        local maxZoomDistance = 10
+        camera.CFrame = CFrame.new(rootPart.Position + Vector3.new(0, maxZoomDistance, 0)) * CFrame.Angles(-math.pi / 2, 0, 0)
+        camera.CameraType = Enum.CameraType.Scriptable
+    end
+
+    shared.cameraLockConnection = runService.RenderStepped:Connect(lockCamera)
+else
+    camera.CameraType = Enum.CameraType.Custom
+end
+    end,
+ })
+
+ --Bakery
+ local Button = MovesSection:AddButton({ 
+    Name = "Bakery",
+    Callback = function()
+local targetPositions = {
+Vector3.new(-494, 4, -440)
+}
+
+local stepDistance = 1
+local stepTime = 0.041
+
+local function moveToTarget(targetPosition)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+local currentPosition = humanoidRootPart.Position
+
+if (currentPosition - targetPosition).Magnitude < stepDistance then
+humanoidRootPart.CFrame = CFrame.new(targetPosition)
+return true
+end
+
+local direction = (targetPosition - currentPosition).Unit
+local newPosition = currentPosition + direction * stepDistance
+
+humanoidRootPart.CFrame = CFrame.new(newPosition)
+return false
+end
+
+local VirtualInputManager = game:GetService("VirtualInputManager")
+local function pressKeyForDuration(key, duration)
+VirtualInputManager:SendKeyEvent(true, key, false, game)
+wait(duration)
+VirtualInputManager:SendKeyEvent(false, key, false, game)
+end
+
+local function moveToPositionAndPressKey(targetPosition, key, duration)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+while (humanoidRootPart.Position - targetPosition).Magnitude > 1 do
+local direction = (targetPosition - humanoidRootPart.Position).Unit
+humanoidRootPart.CFrame = CFrame.new(humanoidRootPart.Position + direction)
+wait(0.05)
+end
+
+pressKeyForDuration(key, duration)
+end
+
+for _, targetPosition in ipairs(targetPositions) do
+while true do
+local reached = moveToTarget(targetPosition)
+if reached then break end
+wait(stepTime)
+end
+end
+
+local player = game.Players.LocalPlayer
+local camera = workspace.CurrentCamera
+local runService = game:GetService("RunService")
+
+shared.isCameraLocked = not shared.isCameraLocked
+
+if shared.cameraLockConnection then
+    shared.cameraLockConnection:Disconnect()
+    shared.cameraLockConnection = nil
+end
+
+if shared.isCameraLocked then
+    local function lockCamera()
+        local character = player.Character or player.CharacterAdded:Wait()
+        local rootPart = character:WaitForChild("HumanoidRootPart")
+
+        local maxZoomDistance = 10
+        camera.CFrame = CFrame.new(rootPart.Position + Vector3.new(0, maxZoomDistance, 0)) * CFrame.Angles(-math.pi / 2, 0, 0)
+        camera.CameraType = Enum.CameraType.Scriptable
+    end
+
+    shared.cameraLockConnection = runService.RenderStepped:Connect(lockCamera)
+else
+    camera.CameraType = Enum.CameraType.Custom
+end
+
+moveToPositionAndPressKey(Vector3.new(-494, 4, -440), "W", 0.1)
+
+local player = game.Players.LocalPlayer
+local camera = workspace.CurrentCamera
+local runService = game:GetService("RunService")
+
+shared.isCameraLocked = not shared.isCameraLocked
+
+if shared.cameraLockConnection then
+    shared.cameraLockConnection:Disconnect()
+    shared.cameraLockConnection = nil
+end
+
+if shared.isCameraLocked then
+    local function lockCamera()
+        local character = player.Character or player.CharacterAdded:Wait()
+        local rootPart = character:WaitForChild("HumanoidRootPart")
+
+        local maxZoomDistance = 10
+        camera.CFrame = CFrame.new(rootPart.Position + Vector3.new(0, maxZoomDistance, 0)) * CFrame.Angles(-math.pi / 2, 0, 0)
+        camera.CameraType = Enum.CameraType.Scriptable
+    end
+
+    shared.cameraLockConnection = runService.RenderStepped:Connect(lockCamera)
+else
+    camera.CameraType = Enum.CameraType.Custom
+end
+    end,
+ })
+
+  --Rice Seller
+  local Button = MovesSection:AddButton({ 
+    Name = "Rice Seller",
+    Callback = function()
+local targetPositions = {
+Vector3.new(510.59613037109375, 1.2250776290893555, 596.8612060546875)
+}
+
+local stepDistance = 1
+local stepTime = 0.041
+
+local function moveToTarget(targetPosition)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+local currentPosition = humanoidRootPart.Position
+
+if (currentPosition - targetPosition).Magnitude < stepDistance then
+humanoidRootPart.CFrame = CFrame.new(targetPosition)
+return true
+end
+
+local direction = (targetPosition - currentPosition).Unit
+local newPosition = currentPosition + direction * stepDistance
+
+humanoidRootPart.CFrame = CFrame.new(newPosition)
+return false
+end
+
+local VirtualInputManager = game:GetService("VirtualInputManager")
+local function pressKeyForDuration(key, duration)
+VirtualInputManager:SendKeyEvent(true, key, false, game)
+wait(duration)
+VirtualInputManager:SendKeyEvent(false, key, false, game)
+end
+
+local function moveToPositionAndPressKey(targetPosition, key, duration)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+while (humanoidRootPart.Position - targetPosition).Magnitude > 1 do
+local direction = (targetPosition - humanoidRootPart.Position).Unit
+humanoidRootPart.CFrame = CFrame.new(humanoidRootPart.Position + direction)
+wait(0.05)
+end
+
+pressKeyForDuration(key, duration)
+end
+
+for _, targetPosition in ipairs(targetPositions) do
+while true do
+local reached = moveToTarget(targetPosition)
+if reached then break end
+wait(stepTime)
+end
+end
+
+local player = game.Players.LocalPlayer
+local camera = workspace.CurrentCamera
+local runService = game:GetService("RunService")
+
+shared.isCameraLocked = not shared.isCameraLocked
+
+if shared.cameraLockConnection then
+    shared.cameraLockConnection:Disconnect()
+    shared.cameraLockConnection = nil
+end
+
+if shared.isCameraLocked then
+    local function lockCamera()
+        local character = player.Character or player.CharacterAdded:Wait()
+        local rootPart = character:WaitForChild("HumanoidRootPart")
+
+        local maxZoomDistance = 10
+        camera.CFrame = CFrame.new(rootPart.Position + Vector3.new(0, maxZoomDistance, 0)) * CFrame.Angles(-math.pi / 2, 0, 0)
+        camera.CameraType = Enum.CameraType.Scriptable
+    end
+
+    shared.cameraLockConnection = runService.RenderStepped:Connect(lockCamera)
+else
+    camera.CameraType = Enum.CameraType.Custom
+end
+
+moveToPositionAndPressKey(Vector3.new(510.59613037109375, 1.2250776290893555, 596.8612060546875), "W", 0.1)
+
+local player = game.Players.LocalPlayer
+local camera = workspace.CurrentCamera
+local runService = game:GetService("RunService")
+
+shared.isCameraLocked = not shared.isCameraLocked
+
+if shared.cameraLockConnection then
+    shared.cameraLockConnection:Disconnect()
+    shared.cameraLockConnection = nil
+end
+
+if shared.isCameraLocked then
+    local function lockCamera()
+        local character = player.Character or player.CharacterAdded:Wait()
+        local rootPart = character:WaitForChild("HumanoidRootPart")
+
+        local maxZoomDistance = 10
+        camera.CFrame = CFrame.new(rootPart.Position + Vector3.new(0, maxZoomDistance, 0)) * CFrame.Angles(-math.pi / 2, 0, 0)
+        camera.CameraType = Enum.CameraType.Scriptable
+    end
+
+    shared.cameraLockConnection = runService.RenderStepped:Connect(lockCamera)
+else
+    camera.CameraType = Enum.CameraType.Custom
+end
+    end,
+ })
+
+--Casino APT
+ local Button = MovesSection:AddButton({ 
+    Name = "Casino Apartments",
+    Callback = function()
+        
+local targetPositions = {
+Vector3.new(1142, 4, -265)
+}
+
+local stepDistance = 1
+local stepTime = 0.041
+
+local function moveToTarget(targetPosition)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+local currentPosition = humanoidRootPart.Position
+
+if (currentPosition - targetPosition).Magnitude < stepDistance then
+humanoidRootPart.CFrame = CFrame.new(targetPosition)
+return true
+end
+
+local direction = (targetPosition - currentPosition).Unit
+local newPosition = currentPosition + direction * stepDistance
+
+humanoidRootPart.CFrame = CFrame.new(newPosition)
+return false
+end
+
+local VirtualInputManager = game:GetService("VirtualInputManager")
+local function pressKeyForDuration(key, duration)
+VirtualInputManager:SendKeyEvent(true, key, false, game)
+wait(duration)
+VirtualInputManager:SendKeyEvent(false, key, false, game)
+end
+
+local function moveToPositionAndPressKey(targetPosition, key, duration)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+while (humanoidRootPart.Position - targetPosition).Magnitude > 1 do
+local direction = (targetPosition - humanoidRootPart.Position).Unit
+humanoidRootPart.CFrame = CFrame.new(humanoidRootPart.Position + direction)
+wait(0.05)
+end
+
+pressKeyForDuration(key, duration)
+end
+
+for _, targetPosition in ipairs(targetPositions) do
+while true do
+local reached = moveToTarget(targetPosition)
+if reached then break end
+wait(stepTime)
+end
+end
+
+local player = game.Players.LocalPlayer
+local camera = workspace.CurrentCamera
+local runService = game:GetService("RunService")
+
+shared.isCameraLocked = not shared.isCameraLocked
+
+if shared.cameraLockConnection then
+    shared.cameraLockConnection:Disconnect()
+    shared.cameraLockConnection = nil
+end
+
+if shared.isCameraLocked then
+    local function lockCamera()
+        local character = player.Character or player.CharacterAdded:Wait()
+        local rootPart = character:WaitForChild("HumanoidRootPart")
+
+        local maxZoomDistance = 10
+        camera.CFrame = CFrame.new(rootPart.Position + Vector3.new(0, maxZoomDistance, 0)) * CFrame.Angles(-math.pi / 2, 0, 0)
+        camera.CameraType = Enum.CameraType.Scriptable
+    end
+
+    shared.cameraLockConnection = runService.RenderStepped:Connect(lockCamera)
+else
+    camera.CameraType = Enum.CameraType.Custom
+end
+
+moveToPositionAndPressKey(Vector3.new(1142, 4, -265), "W", 0.1)
+
+local player = game.Players.LocalPlayer
+local camera = workspace.CurrentCamera
+local runService = game:GetService("RunService")
+
+shared.isCameraLocked = not shared.isCameraLocked
+
+if shared.cameraLockConnection then
+    shared.cameraLockConnection:Disconnect()
+    shared.cameraLockConnection = nil
+end
+
+if shared.isCameraLocked then
+    local function lockCamera()
+        local character = player.Character or player.CharacterAdded:Wait()
+        local rootPart = character:WaitForChild("HumanoidRootPart")
+
+        local maxZoomDistance = 10
+        camera.CFrame = CFrame.new(rootPart.Position + Vector3.new(0, maxZoomDistance, 0)) * CFrame.Angles(-math.pi / 2, 0, 0)
+        camera.CameraType = Enum.CameraType.Scriptable
+    end
+
+    shared.cameraLockConnection = runService.RenderStepped:Connect(lockCamera)
+else
+    camera.CameraType = Enum.CameraType.Custom
+end
+    end,
+ })
+
+ --delership APT
+ local Button = MovesSection:AddButton({ 
+    Name = "Dealership Apartments",
+    Callback = function()
+        
+local targetPositions = {
+Vector3.new(716, 4, 530)
+}
+
+local stepDistance = 1
+local stepTime = 0.041
+
+local function moveToTarget(targetPosition)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+local currentPosition = humanoidRootPart.Position
+
+if (currentPosition - targetPosition).Magnitude < stepDistance then
+humanoidRootPart.CFrame = CFrame.new(targetPosition)
+return true
+end
+
+local direction = (targetPosition - currentPosition).Unit
+local newPosition = currentPosition + direction * stepDistance
+
+humanoidRootPart.CFrame = CFrame.new(newPosition)
+return false
+end
+
+local VirtualInputManager = game:GetService("VirtualInputManager")
+local function pressKeyForDuration(key, duration)
+VirtualInputManager:SendKeyEvent(true, key, false, game)
+wait(duration)
+VirtualInputManager:SendKeyEvent(false, key, false, game)
+end
+
+local function moveToPositionAndPressKey(targetPosition, key, duration)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+while (humanoidRootPart.Position - targetPosition).Magnitude > 1 do
+local direction = (targetPosition - humanoidRootPart.Position).Unit
+humanoidRootPart.CFrame = CFrame.new(humanoidRootPart.Position + direction)
+wait(0.05)
+end
+
+pressKeyForDuration(key, duration)
+end
+
+for _, targetPosition in ipairs(targetPositions) do
+while true do
+local reached = moveToTarget(targetPosition)
+if reached then break end
+wait(stepTime)
+end
+end
+
+local player = game.Players.LocalPlayer
+local camera = workspace.CurrentCamera
+local runService = game:GetService("RunService")
+
+shared.isCameraLocked = not shared.isCameraLocked
+
+if shared.cameraLockConnection then
+    shared.cameraLockConnection:Disconnect()
+    shared.cameraLockConnection = nil
+end
+
+if shared.isCameraLocked then
+    local function lockCamera()
+        local character = player.Character or player.CharacterAdded:Wait()
+        local rootPart = character:WaitForChild("HumanoidRootPart")
+
+        local maxZoomDistance = 10
+        camera.CFrame = CFrame.new(rootPart.Position + Vector3.new(0, maxZoomDistance, 0)) * CFrame.Angles(-math.pi / 2, 0, 0)
+        camera.CameraType = Enum.CameraType.Scriptable
+    end
+
+    shared.cameraLockConnection = runService.RenderStepped:Connect(lockCamera)
+else
+    camera.CameraType = Enum.CameraType.Custom
+end
+
+moveToPositionAndPressKey(Vector3.new(716, 4, 530), "W", 0.1)
+
+local player = game.Players.LocalPlayer
+local camera = workspace.CurrentCamera
+local runService = game:GetService("RunService")
+
+shared.isCameraLocked = not shared.isCameraLocked
+
+if shared.cameraLockConnection then
+    shared.cameraLockConnection:Disconnect()
+    shared.cameraLockConnection = nil
+end
+
+if shared.isCameraLocked then
+    local function lockCamera()
+        local character = player.Character or player.CharacterAdded:Wait()
+        local rootPart = character:WaitForChild("HumanoidRootPart")
+
+        local maxZoomDistance = 10
+        camera.CFrame = CFrame.new(rootPart.Position + Vector3.new(0, maxZoomDistance, 0)) * CFrame.Angles(-math.pi / 2, 0, 0)
+        camera.CameraType = Enum.CameraType.Scriptable
+    end
+
+    shared.cameraLockConnection = runService.RenderStepped:Connect(lockCamera)
+else
+    camera.CameraType = Enum.CameraType.Custom
+end
+    end,
+ })
+
+ --Boxes APT
+ local Button = MovesSection:AddButton({ 
+    Name = "Boxes Apartments",
+    Callback = function()
+        
+local targetPositions = {
+Vector3.new(-519, 4, 147)
+}
+
+local stepDistance = 1
+local stepTime = 0.041
+
+local function moveToTarget(targetPosition)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+local currentPosition = humanoidRootPart.Position
+
+if (currentPosition - targetPosition).Magnitude < stepDistance then
+humanoidRootPart.CFrame = CFrame.new(targetPosition)
+return true
+end
+
+local direction = (targetPosition - currentPosition).Unit
+local newPosition = currentPosition + direction * stepDistance
+
+humanoidRootPart.CFrame = CFrame.new(newPosition)
+return false
+end
+
+local VirtualInputManager = game:GetService("VirtualInputManager")
+local function pressKeyForDuration(key, duration)
+VirtualInputManager:SendKeyEvent(true, key, false, game)
+wait(duration)
+VirtualInputManager:SendKeyEvent(false, key, false, game)
+end
+
+local function moveToPositionAndPressKey(targetPosition, key, duration)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+while (humanoidRootPart.Position - targetPosition).Magnitude > 1 do
+local direction = (targetPosition - humanoidRootPart.Position).Unit
+humanoidRootPart.CFrame = CFrame.new(humanoidRootPart.Position + direction)
+wait(0.05)
+end
+
+pressKeyForDuration(key, duration)
+end
+
+for _, targetPosition in ipairs(targetPositions) do
+while true do
+local reached = moveToTarget(targetPosition)
+if reached then break end
+wait(stepTime)
+end
+end
+
+local player = game.Players.LocalPlayer
+local camera = workspace.CurrentCamera
+local runService = game:GetService("RunService")
+
+shared.isCameraLocked = not shared.isCameraLocked
+
+if shared.cameraLockConnection then
+    shared.cameraLockConnection:Disconnect()
+    shared.cameraLockConnection = nil
+end
+
+if shared.isCameraLocked then
+    local function lockCamera()
+        local character = player.Character or player.CharacterAdded:Wait()
+        local rootPart = character:WaitForChild("HumanoidRootPart")
+
+        local maxZoomDistance = 10
+        camera.CFrame = CFrame.new(rootPart.Position + Vector3.new(0, maxZoomDistance, 0)) * CFrame.Angles(-math.pi / 2, 0, 0)
+        camera.CameraType = Enum.CameraType.Scriptable
+    end
+
+    shared.cameraLockConnection = runService.RenderStepped:Connect(lockCamera)
+else
+    camera.CameraType = Enum.CameraType.Custom
+end
+
+moveToPositionAndPressKey(Vector3.new(-519, 4, 147), "W", 0.1)
+
+local player = game.Players.LocalPlayer
+local camera = workspace.CurrentCamera
+local runService = game:GetService("RunService")
+
+shared.isCameraLocked = not shared.isCameraLocked
+
+if shared.cameraLockConnection then
+    shared.cameraLockConnection:Disconnect()
+    shared.cameraLockConnection = nil
+end
+
+if shared.isCameraLocked then
+    local function lockCamera()
+        local character = player.Character or player.CharacterAdded:Wait()
+        local rootPart = character:WaitForChild("HumanoidRootPart")
+
+        local maxZoomDistance = 10
+        camera.CFrame = CFrame.new(rootPart.Position + Vector3.new(0, maxZoomDistance, 0)) * CFrame.Angles(-math.pi / 2, 0, 0)
+        camera.CameraType = Enum.CameraType.Scriptable
+    end
+
+    shared.cameraLockConnection = runService.RenderStepped:Connect(lockCamera)
+else
+    camera.CameraType = Enum.CameraType.Custom
+end
+    end,
+ })
+
+
+ --Deler
+ local Button = MovesSection:AddButton({ 
+    Name = "Delership",
+    Callback = function()
+        
+local targetPositions = {
+Vector3.new(732, 4, 416)
+}
+
+local stepDistance = 1
+local stepTime = 0.041
+
+local function moveToTarget(targetPosition)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+local currentPosition = humanoidRootPart.Position
+
+if (currentPosition - targetPosition).Magnitude < stepDistance then
+humanoidRootPart.CFrame = CFrame.new(targetPosition)
+return true
+end
+
+local direction = (targetPosition - currentPosition).Unit
+local newPosition = currentPosition + direction * stepDistance
+
+humanoidRootPart.CFrame = CFrame.new(newPosition)
+return false
+end
+
+local VirtualInputManager = game:GetService("VirtualInputManager")
+local function pressKeyForDuration(key, duration)
+VirtualInputManager:SendKeyEvent(true, key, false, game)
+wait(duration)
+VirtualInputManager:SendKeyEvent(false, key, false, game)
+end
+
+local function moveToPositionAndPressKey(targetPosition, key, duration)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+while (humanoidRootPart.Position - targetPosition).Magnitude > 1 do
+local direction = (targetPosition - humanoidRootPart.Position).Unit
+humanoidRootPart.CFrame = CFrame.new(humanoidRootPart.Position + direction)
+wait(0.05)
+end
+
+pressKeyForDuration(key, duration)
+end
+
+for _, targetPosition in ipairs(targetPositions) do
+while true do
+local reached = moveToTarget(targetPosition)
+if reached then break end
+wait(stepTime)
+end
+end
+
+local player = game.Players.LocalPlayer
+local camera = workspace.CurrentCamera
+local runService = game:GetService("RunService")
+
+shared.isCameraLocked = not shared.isCameraLocked
+
+if shared.cameraLockConnection then
+    shared.cameraLockConnection:Disconnect()
+    shared.cameraLockConnection = nil
+end
+
+if shared.isCameraLocked then
+    local function lockCamera()
+        local character = player.Character or player.CharacterAdded:Wait()
+        local rootPart = character:WaitForChild("HumanoidRootPart")
+
+        local maxZoomDistance = 10
+        camera.CFrame = CFrame.new(rootPart.Position + Vector3.new(0, maxZoomDistance, 0)) * CFrame.Angles(-math.pi / 2, 0, 0)
+        camera.CameraType = Enum.CameraType.Scriptable
+    end
+
+    shared.cameraLockConnection = runService.RenderStepped:Connect(lockCamera)
+else
+    camera.CameraType = Enum.CameraType.Custom
+end
+
+moveToPositionAndPressKey(Vector3.new(732, 4, 416), "W", 0.1)
+
+local player = game.Players.LocalPlayer
+local camera = workspace.CurrentCamera
+local runService = game:GetService("RunService")
+
+shared.isCameraLocked = not shared.isCameraLocked
+
+if shared.cameraLockConnection then
+    shared.cameraLockConnection:Disconnect()
+    shared.cameraLockConnection = nil
+end
+
+if shared.isCameraLocked then
+    local function lockCamera()
+        local character = player.Character or player.CharacterAdded:Wait()
+        local rootPart = character:WaitForChild("HumanoidRootPart")
+
+        local maxZoomDistance = 10
+        camera.CFrame = CFrame.new(rootPart.Position + Vector3.new(0, maxZoomDistance, 0)) * CFrame.Angles(-math.pi / 2, 0, 0)
+        camera.CameraType = Enum.CameraType.Scriptable
+    end
+
+    shared.cameraLockConnection = runService.RenderStepped:Connect(lockCamera)
+else
+    camera.CameraType = Enum.CameraType.Custom
+end
+    end,
+ })
+
+ --Cosmic n' Da Cut
+ local Button = MovesSection:AddButton({ 
+    Name = "Cosmic n' Da Cut",
+    Callback = function()
+        
+local targetPositions = {
+Vector3.new(68, 4, -94)
+}
+
+local stepDistance = 1
+local stepTime = 0.041
+
+local function moveToTarget(targetPosition)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+local currentPosition = humanoidRootPart.Position
+
+if (currentPosition - targetPosition).Magnitude < stepDistance then
+humanoidRootPart.CFrame = CFrame.new(targetPosition)
+return true
+end
+
+local direction = (targetPosition - currentPosition).Unit
+local newPosition = currentPosition + direction * stepDistance
+
+humanoidRootPart.CFrame = CFrame.new(newPosition)
+return false
+end
+
+local VirtualInputManager = game:GetService("VirtualInputManager")
+local function pressKeyForDuration(key, duration)
+VirtualInputManager:SendKeyEvent(true, key, false, game)
+wait(duration)
+VirtualInputManager:SendKeyEvent(false, key, false, game)
+end
+
+local function moveToPositionAndPressKey(targetPosition, key, duration)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+while (humanoidRootPart.Position - targetPosition).Magnitude > 1 do
+local direction = (targetPosition - humanoidRootPart.Position).Unit
+humanoidRootPart.CFrame = CFrame.new(humanoidRootPart.Position + direction)
+wait(0.05)
+end
+
+pressKeyForDuration(key, duration)
+end
+
+for _, targetPosition in ipairs(targetPositions) do
+while true do
+local reached = moveToTarget(targetPosition)
+if reached then break end
+wait(stepTime)
+end
+end
+
+local player = game.Players.LocalPlayer
+local camera = workspace.CurrentCamera
+local runService = game:GetService("RunService")
+
+shared.isCameraLocked = not shared.isCameraLocked
+
+if shared.cameraLockConnection then
+    shared.cameraLockConnection:Disconnect()
+    shared.cameraLockConnection = nil
+end
+
+if shared.isCameraLocked then
+    local function lockCamera()
+        local character = player.Character or player.CharacterAdded:Wait()
+        local rootPart = character:WaitForChild("HumanoidRootPart")
+
+        local maxZoomDistance = 10
+        camera.CFrame = CFrame.new(rootPart.Position + Vector3.new(0, maxZoomDistance, 0)) * CFrame.Angles(-math.pi / 2, 0, 0)
+        camera.CameraType = Enum.CameraType.Scriptable
+    end
+
+    shared.cameraLockConnection = runService.RenderStepped:Connect(lockCamera)
+else
+    camera.CameraType = Enum.CameraType.Custom
+end
+
+moveToPositionAndPressKey(Vector3.new(68, 4, -94), "W", 0.1)
+
+local player = game.Players.LocalPlayer
+local camera = workspace.CurrentCamera
+local runService = game:GetService("RunService")
+
+shared.isCameraLocked = not shared.isCameraLocked
+
+if shared.cameraLockConnection then
+    shared.cameraLockConnection:Disconnect()
+    shared.cameraLockConnection = nil
+end
+
+if shared.isCameraLocked then
+    local function lockCamera()
+        local character = player.Character or player.CharacterAdded:Wait()
+        local rootPart = character:WaitForChild("HumanoidRootPart")
+
+        local maxZoomDistance = 10
+        camera.CFrame = CFrame.new(rootPart.Position + Vector3.new(0, maxZoomDistance, 0)) * CFrame.Angles(-math.pi / 2, 0, 0)
+        camera.CameraType = Enum.CameraType.Scriptable
+    end
+
+    shared.cameraLockConnection = runService.RenderStepped:Connect(lockCamera)
+else
+    camera.CameraType = Enum.CameraType.Custom
+end
+    end,
+ })
+ --RPT/YGZ
+ local Button = MovesSection:AddButton({ 
+    Name = "RPT #YGZ",
+    Callback = function()
+        
+local targetPositions = {
+Vector3.new(2, 4, 221)
+}
+
+local stepDistance = 1
+local stepTime = 0.041
+
+local function moveToTarget(targetPosition)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+local currentPosition = humanoidRootPart.Position
+
+if (currentPosition - targetPosition).Magnitude < stepDistance then
+humanoidRootPart.CFrame = CFrame.new(targetPosition)
+return true
+end
+
+local direction = (targetPosition - currentPosition).Unit
+local newPosition = currentPosition + direction * stepDistance
+
+humanoidRootPart.CFrame = CFrame.new(newPosition)
+return false
+end
+
+local VirtualInputManager = game:GetService("VirtualInputManager")
+local function pressKeyForDuration(key, duration)
+VirtualInputManager:SendKeyEvent(true, key, false, game)
+wait(duration)
+VirtualInputManager:SendKeyEvent(false, key, false, game)
+end
+
+local function moveToPositionAndPressKey(targetPosition, key, duration)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+while (humanoidRootPart.Position - targetPosition).Magnitude > 1 do
+local direction = (targetPosition - humanoidRootPart.Position).Unit
+humanoidRootPart.CFrame = CFrame.new(humanoidRootPart.Position + direction)
+wait(0.05)
+end
+
+pressKeyForDuration(key, duration)
+end
+
+for _, targetPosition in ipairs(targetPositions) do
+while true do
+local reached = moveToTarget(targetPosition)
+if reached then break end
+wait(stepTime)
+end
+end
+
+local player = game.Players.LocalPlayer
+local camera = workspace.CurrentCamera
+local runService = game:GetService("RunService")
+
+shared.isCameraLocked = not shared.isCameraLocked
+
+if shared.cameraLockConnection then
+    shared.cameraLockConnection:Disconnect()
+    shared.cameraLockConnection = nil
+end
+
+if shared.isCameraLocked then
+    local function lockCamera()
+        local character = player.Character or player.CharacterAdded:Wait()
+        local rootPart = character:WaitForChild("HumanoidRootPart")
+
+        local maxZoomDistance = 10
+        camera.CFrame = CFrame.new(rootPart.Position + Vector3.new(0, maxZoomDistance, 0)) * CFrame.Angles(-math.pi / 2, 0, 0)
+        camera.CameraType = Enum.CameraType.Scriptable
+    end
+
+    shared.cameraLockConnection = runService.RenderStepped:Connect(lockCamera)
+else
+    camera.CameraType = Enum.CameraType.Custom
+end
+
+moveToPositionAndPressKey(Vector3.new(2, 4, 221), "W", 0.1)
+
+local player = game.Players.LocalPlayer
+local camera = workspace.CurrentCamera
+local runService = game:GetService("RunService")
+
+shared.isCameraLocked = not shared.isCameraLocked
+
+if shared.cameraLockConnection then
+    shared.cameraLockConnection:Disconnect()
+    shared.cameraLockConnection = nil
+end
+
+if shared.isCameraLocked then
+    local function lockCamera()
+        local character = player.Character or player.CharacterAdded:Wait()
+        local rootPart = character:WaitForChild("HumanoidRootPart")
+
+        local maxZoomDistance = 10
+        camera.CFrame = CFrame.new(rootPart.Position + Vector3.new(0, maxZoomDistance, 0)) * CFrame.Angles(-math.pi / 2, 0, 0)
+        camera.CameraType = Enum.CameraType.Scriptable
+    end
+
+    shared.cameraLockConnection = runService.RenderStepped:Connect(lockCamera)
+else
+    camera.CameraType = Enum.CameraType.Custom
+end
+    end,
+ })
+
+  --DOA
+  local Button = MovesSection:AddButton({ 
+    Name = "DOA #Sevside",
+    Callback = function()
+        
+local targetPositions = {
+Vector3.new(-336, 4, -428)
+}
+
+local stepDistance = 1
+local stepTime = 0.041
+
+local function moveToTarget(targetPosition)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+local currentPosition = humanoidRootPart.Position
+
+if (currentPosition - targetPosition).Magnitude < stepDistance then
+humanoidRootPart.CFrame = CFrame.new(targetPosition)
+return true
+end
+
+local direction = (targetPosition - currentPosition).Unit
+local newPosition = currentPosition + direction * stepDistance
+
+humanoidRootPart.CFrame = CFrame.new(newPosition)
+return false
+end
+
+local VirtualInputManager = game:GetService("VirtualInputManager")
+local function pressKeyForDuration(key, duration)
+VirtualInputManager:SendKeyEvent(true, key, false, game)
+wait(duration)
+VirtualInputManager:SendKeyEvent(false, key, false, game)
+end
+
+local function moveToPositionAndPressKey(targetPosition, key, duration)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+while (humanoidRootPart.Position - targetPosition).Magnitude > 1 do
+local direction = (targetPosition - humanoidRootPart.Position).Unit
+humanoidRootPart.CFrame = CFrame.new(humanoidRootPart.Position + direction)
+wait(0.05)
+end
+
+pressKeyForDuration(key, duration)
+end
+
+for _, targetPosition in ipairs(targetPositions) do
+while true do
+local reached = moveToTarget(targetPosition)
+if reached then break end
+wait(stepTime)
+end
+end
+
+local player = game.Players.LocalPlayer
+local camera = workspace.CurrentCamera
+local runService = game:GetService("RunService")
+
+shared.isCameraLocked = not shared.isCameraLocked
+
+if shared.cameraLockConnection then
+    shared.cameraLockConnection:Disconnect()
+    shared.cameraLockConnection = nil
+end
+
+if shared.isCameraLocked then
+    local function lockCamera()
+        local character = player.Character or player.CharacterAdded:Wait()
+        local rootPart = character:WaitForChild("HumanoidRootPart")
+
+        local maxZoomDistance = 10
+        camera.CFrame = CFrame.new(rootPart.Position + Vector3.new(0, maxZoomDistance, 0)) * CFrame.Angles(-math.pi / 2, 0, 0)
+        camera.CameraType = Enum.CameraType.Scriptable
+    end
+
+    shared.cameraLockConnection = runService.RenderStepped:Connect(lockCamera)
+else
+    camera.CameraType = Enum.CameraType.Custom
+end
+
+moveToPositionAndPressKey(Vector3.new(-336, 4, -428), "W", 0.1)
+
+local player = game.Players.LocalPlayer
+local camera = workspace.CurrentCamera
+local runService = game:GetService("RunService")
+
+shared.isCameraLocked = not shared.isCameraLocked
+
+if shared.cameraLockConnection then
+    shared.cameraLockConnection:Disconnect()
+    shared.cameraLockConnection = nil
+end
+
+if shared.isCameraLocked then
+    local function lockCamera()
+        local character = player.Character or player.CharacterAdded:Wait()
+        local rootPart = character:WaitForChild("HumanoidRootPart")
+
+        local maxZoomDistance = 10
+        camera.CFrame = CFrame.new(rootPart.Position + Vector3.new(0, maxZoomDistance, 0)) * CFrame.Angles(-math.pi / 2, 0, 0)
+        camera.CameraType = Enum.CameraType.Scriptable
+    end
+
+    shared.cameraLockConnection = runService.RenderStepped:Connect(lockCamera)
+else
+    camera.CameraType = Enum.CameraType.Custom
+end
+    end,
+ })
+
+  --OGZ
+  local Button = MovesSection:AddButton({ 
+    Name = "OGZ #Courtlandt",
+    Callback = function()
+        
+local targetPositions = {
+Vector3.new(123, 4, -476)
+}
+
+local stepDistance = 1
+local stepTime = 0.041
+
+local function moveToTarget(targetPosition)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+local currentPosition = humanoidRootPart.Position
+
+if (currentPosition - targetPosition).Magnitude < stepDistance then
+humanoidRootPart.CFrame = CFrame.new(targetPosition)
+return true
+end
+
+local direction = (targetPosition - currentPosition).Unit
+local newPosition = currentPosition + direction * stepDistance
+
+humanoidRootPart.CFrame = CFrame.new(newPosition)
+return false
+end
+
+local VirtualInputManager = game:GetService("VirtualInputManager")
+local function pressKeyForDuration(key, duration)
+VirtualInputManager:SendKeyEvent(true, key, false, game)
+wait(duration)
+VirtualInputManager:SendKeyEvent(false, key, false, game)
+end
+
+local function moveToPositionAndPressKey(targetPosition, key, duration)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+while (humanoidRootPart.Position - targetPosition).Magnitude > 1 do
+local direction = (targetPosition - humanoidRootPart.Position).Unit
+humanoidRootPart.CFrame = CFrame.new(humanoidRootPart.Position + direction)
+wait(0.05)
+end
+
+pressKeyForDuration(key, duration)
+end
+
+for _, targetPosition in ipairs(targetPositions) do
+while true do
+local reached = moveToTarget(targetPosition)
+if reached then break end
+wait(stepTime)
+end
+end
+
+local player = game.Players.LocalPlayer
+local camera = workspace.CurrentCamera
+local runService = game:GetService("RunService")
+
+shared.isCameraLocked = not shared.isCameraLocked
+
+if shared.cameraLockConnection then
+    shared.cameraLockConnection:Disconnect()
+    shared.cameraLockConnection = nil
+end
+
+if shared.isCameraLocked then
+    local function lockCamera()
+        local character = player.Character or player.CharacterAdded:Wait()
+        local rootPart = character:WaitForChild("HumanoidRootPart")
+
+        local maxZoomDistance = 10
+        camera.CFrame = CFrame.new(rootPart.Position + Vector3.new(0, maxZoomDistance, 0)) * CFrame.Angles(-math.pi / 2, 0, 0)
+        camera.CameraType = Enum.CameraType.Scriptable
+    end
+
+    shared.cameraLockConnection = runService.RenderStepped:Connect(lockCamera)
+else
+    camera.CameraType = Enum.CameraType.Custom
+end
+
+moveToPositionAndPressKey(Vector3.new(123, 4, -476), "W", 0.1)
+
+local player = game.Players.LocalPlayer
+local camera = workspace.CurrentCamera
+local runService = game:GetService("RunService")
+
+shared.isCameraLocked = not shared.isCameraLocked
+
+if shared.cameraLockConnection then
+    shared.cameraLockConnection:Disconnect()
+    shared.cameraLockConnection = nil
+end
+
+if shared.isCameraLocked then
+    local function lockCamera()
+        local character = player.Character or player.CharacterAdded:Wait()
+        local rootPart = character:WaitForChild("HumanoidRootPart")
+
+        local maxZoomDistance = 10
+        camera.CFrame = CFrame.new(rootPart.Position + Vector3.new(0, maxZoomDistance, 0)) * CFrame.Angles(-math.pi / 2, 0, 0)
+        camera.CameraType = Enum.CameraType.Scriptable
+    end
+
+    shared.cameraLockConnection = runService.RenderStepped:Connect(lockCamera)
+else
+    camera.CameraType = Enum.CameraType.Custom
+end
+    end,
+})
